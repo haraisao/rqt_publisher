@@ -47,10 +47,10 @@ class PublisherTreeWidget(MessageTreeWidget):
         super(PublisherTreeWidget, self).__init__(parent)
         self.setModel(PublisherTreeModel(self))
         self._action_remove_publisher = QAction(
-            QIcon.fromTheme('list-remove'), 'Remove Selected', self)
+            QIcon.fromTheme('list-remove',self.getPixmapIcon('list-remove')), 'Remove Selected', self)
         self._action_remove_publisher.triggered[bool].connect(self._handle_action_remove_publisher)
         self._action_publish_once = QAction(
-            QIcon.fromTheme('media-playback-start'), 'Publish Selected Once', self)
+            QIcon.fromTheme('media-playback-start',self.getPixmapIcon('media-playback-start')), 'Publish Selected Once', self)
         self._action_publish_once.triggered[bool].connect(self._handle_action_publish_once)
         self.setItemDelegateForColumn(self.model()._column_index['rate'],
                                       SpinBoxDelegate(min_value=0, max_value=1000000, decimals=2))

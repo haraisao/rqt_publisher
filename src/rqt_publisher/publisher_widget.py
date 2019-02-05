@@ -35,7 +35,7 @@ import os
 
 from python_qt_binding import loadUi
 from python_qt_binding.QtCore import Signal, Slot
-from python_qt_binding.QtGui import QIcon
+from python_qt_binding.QtGui import QIcon, QPixmap
 from python_qt_binding.QtWidgets import QWidget
 
 import roslib
@@ -65,11 +65,15 @@ class PublisherWidget(QWidget):
         ui_file = os.path.join(self._rospack.get_path('rqt_publisher'), 'resource', 'Publisher.ui')
         loadUi(ui_file, self,
                {'ExtendedComboBox': ExtendedComboBox, 'PublisherTreeWidget': PublisherTreeWidget})
-        self.refresh_button.setIcon(QIcon.fromTheme('view-refresh'))
+        self.refresh_button.setIcon(QIcon.fromTheme('view-refresh',
+            QIcon(QPixmap(os.path.join(self._rospack.get_path('rqt_gui'), 'resource/icons', 'view-refresh.png')))))
         self.refresh_button.clicked.connect(self.refresh_combo_boxes)
-        self.add_publisher_button.setIcon(QIcon.fromTheme('list-add'))
-        self.remove_publisher_button.setIcon(QIcon.fromTheme('list-remove'))
-        self.clear_button.setIcon(QIcon.fromTheme('edit-clear'))
+        self.add_publisher_button.setIcon(QIcon.fromTheme('list-add',
+                QIcon(QPixmap(os.path.join(self._rospack.get_path('rqt_gui'), 'resource/icons', 'list-add.png')))))
+        self.remove_publisher_button.setIcon(QIcon.fromTheme('list-remove',
+                QIcon(QPixmap(os.path.join(self._rospack.get_path('rqt_gui'), 'resource/icons', 'list-remove.png')))))
+        self.clear_button.setIcon(QIcon.fromTheme('edit-clear',
+                QIcon(QPixmap(os.path.join(self._rospack.get_path('rqt_gui'), 'resource/icons', 'edit-clear.png')))))
 
         self.refresh_combo_boxes()
 
